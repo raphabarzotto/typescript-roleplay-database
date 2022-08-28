@@ -11,3 +11,11 @@ export async function create(productToCreate: IProduct): Promise<IProductWithID>
 
   return { ...productToCreate, id: insertId };
 }
+
+export async function getAll(): Promise<IProductWithID[]> {
+  const query = 'SELECT * FROM Trybesmith.Products';
+
+  const [result] = await connection.execute(query);
+
+  return result as IProductWithID[];
+}
