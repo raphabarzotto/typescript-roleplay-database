@@ -91,4 +91,4 @@ export default {
   claseValidation,
   levelValidation,
   passwordValidation,
-};  
+};
