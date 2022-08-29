@@ -21,7 +21,7 @@ export  async function getAllOrdersModel(): Promise<IOrder[]> {
   return result as IOrder[];
 }
 
-export async function postOrder(id: number, productsIds: number[]): Promise<IOrder> {
+export async function postOrderModel(id: number, productsIds: number[]): Promise<IOrder> {
   const query1 = 'INSERT INTO Trybesmith.Orders (userId) VALUES (?)';
   const [result] = await connection.execute(query1, [id]) as { insertId: number }[];
   const { insertId } = result;
