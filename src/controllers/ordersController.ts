@@ -3,18 +3,19 @@ import jwt from 'jsonwebtoken';
 import * as ordersServices from '../services/ordersService';
 import { IUserWithID } from '../interfaces/usersInterface';
 
-const secret = 'criandoToken';
+const secret = 'senhaSecreta';
 
 export async function getAllOrdersController(_req: Request, res: Response) {
   const { status, data } = await ordersServices.getAllOrdersService();
   res.status(status).json(data);
 }
 
-export async function postOrdercontroller(req: Request, res: Response) {
+export async function postOrderController(req: Request, res: Response) {
   const { productsIds } = req.body;
   const token = req.headers.authorization as string;
   const data = jwt.verify(token, secret);
+  console.log('CONTROLLER ORDER', data);
   const { id } = data as IUserWithID;
-  const result = await ordersServices.postOrderService({ userId: id, productsIds });
-  return res.status(result.status).json(result.message);
+  const resultQuery = await ordersServices.postOrdersService(id, productsIds);
+  return res.status(resultQuery.status).json(resultQuery.message);
 }

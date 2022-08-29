@@ -9,7 +9,7 @@ ordersRouter.post(
   '/',
   ordersMiddlewares.tokenValidation,
   ordersMiddlewares.productsIdValidation,
-  ordersControllers.postOrdercontroller,
+  ordersControllers.postOrderController,
 );
 
 export default ordersRouter;

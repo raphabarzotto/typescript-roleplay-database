@@ -21,17 +21,13 @@ export async function getAllOrdersModel(): Promise<IOrder[]> {
   return result as IOrder[];
 }
 
-export async function postOrderModel(body: IOrder): Promise<IOrder> {
-  const { userId, productsIds } = body;
-
-  const query1 = 'INSERT INTO Trybesmith.Orders (userId) VALUES (?)';
-  const [result] = await connection.execute(query1, [userId]) as { insertId: number }[];
+export async function postOrdersModel(id: number, productsIds: number[]) {
+  const queryInsertOrders = 'INSERT INTO Trybesmith.Orders (userId) VALUES (?)';
+  const [result] = await connection.execute(queryInsertOrders, [id]) as { insertId: number }[];
   const { insertId } = result;
-
-  const query2 = 'UPDATE Trybesmith.Products SET orderId = ? WHERE id = ?';
+  const queryUpdateProduct = 'UPDATE Trybesmith.Products SET orderId = ? WHERE id = ?';
   await Promise.all(productsIds.map(async (productId: number) => {
-    await connection.execute(query2, [insertId, productId]);
+    await connection.execute(queryUpdateProduct, [insertId, productId]);
   }));
-
-  return { userId, productsIds };
+  return { userId: id, productsIds };
 }
