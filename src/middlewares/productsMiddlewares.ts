@@ -48,4 +48,4 @@ function amountValidation(req: Request, res: Response, next: NextFunction) {
 export default { 
   nameValidation, 
   amountValidation,
-};  
+};
