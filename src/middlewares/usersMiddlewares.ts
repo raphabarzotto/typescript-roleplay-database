@@ -45,12 +45,14 @@ function claseValidation(req: Request, res: Response, next: NextFunction) {
 }
 
 function levelValidation(req: Request, res: Response, next: NextFunction) {
+  // pesquisar se da para colocar essas duas próximas linhas em uma só
+  const body = req.body as IUser;
   const { level } = req.body as IUser;
-  if (!level) {
+  if (!Object.keys(body).includes('level')) {
     return res.status(BAD_REQUEST).json({
       message: '"level" is required',
     });
-  } 
+  }
   if (typeof level !== 'number') {
     return res.status(UNPROCESSABLE_ENTITY).json({
       message: '"level" must be a number',
