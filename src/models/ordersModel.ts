@@ -18,6 +18,5 @@ export default async function getAllOrdersModel(): Promise<IOrder[]> {
 
   const [result] = await connection.execute(query);
 
-
   return result as IOrder[];
 }
