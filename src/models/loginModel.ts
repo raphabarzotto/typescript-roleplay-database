@@ -1,7 +1,7 @@
 import connection from './connection';
 import { ILogin } from '../interfaces/loginInterface';
 
-export default async function login(body: ILogin): Promise<ILogin[]> {
+export default async function loginService(body: ILogin): Promise<ILogin[]> {
   const { username, password } = body;
   const query = `
     SELECT
