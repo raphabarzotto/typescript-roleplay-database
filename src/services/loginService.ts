@@ -14,5 +14,5 @@ export default async function loginService(body: ILogin) {
   }
 
   const token = jwtGenerator(result);
-  return { status: 200, message: token };
+  return { status: 200, message: { token } };
 }
