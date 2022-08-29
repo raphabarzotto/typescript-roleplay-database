@@ -1,5 +1,5 @@
 export interface IToken {
   id?: number;
-  username: string;
+  username?: string;
   password?: string;
 }
