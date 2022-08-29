@@ -1,3 +1,4 @@
+// source: https://www.npmjs.com/package/jsonwebtoken
 import { sign } from 'jsonwebtoken';
 import { IToken } from '../interfaces/tokenInterface';
 
