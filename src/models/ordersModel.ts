@@ -1,7 +1,7 @@
 import connection from './connection';
 import { IOrder } from '../interfaces/ordersInterface';
 
-export default async function getAllOrdersModel(): Promise<IOrder[]> {
+export  async function getAllOrdersModel(): Promise<IOrder[]> {
   // source: https://www.tutorialspoint.com/mysql/mysql_aggregate_functions_json_arraygg.htm
   const query = `
     SELECT
@@ -19,4 +19,17 @@ export default async function getAllOrdersModel(): Promise<IOrder[]> {
   const [result] = await connection.execute(query);
 
   return result as IOrder[];
+}
+
+export async function postOrder(id: number, productsIds: number[]): Promise<IOrder> {
+  const query1 = 'INSERT INTO Trybesmith.Orders (userId) VALUES (?)';
+  const [result] = await connection.execute(query1, [id]) as { insertId: number }[];
+  const { insertId } = result;
+
+  const query2 = 'UPDATE Trybesmith.Products SET orderId = ? WHERE id = ?';
+  await Promise.all(productsIds.map(async (productId: number) => {
+    await connection.execute(query2, [insertId, productId]);
+  }));
+
+  return { userId: id, productsIds };
 }
