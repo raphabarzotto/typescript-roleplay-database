@@ -10,9 +10,9 @@ const HTTP_UNAUTHORIZE = {
 export default async function loginService(body: ILogin) {
   const [result] = await loginModel(body);
   if (!result) {
-    return HTTP_UNAUTHORIZE
+    return HTTP_UNAUTHORIZE;
   }
 
-  const token = jwtGenerator(result)
+  const token = jwtGenerator(result);
   return { status: 200, message: token };
 }
