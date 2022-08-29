@@ -17,10 +17,10 @@ export async function postOrderController(req: Request, res: Response) {
   try {
     const data = jwt.verify(token, secret);
     const { id } = data as IUserWithID;
-    const result = await ordersServices.postOrdersService(id, productsIds);
+    const result = await ordersServices.postOrdersService({ userId: id, productsIds });
     return res.status(result.status).json(result.message);
   } catch (_e) {
-    const result = await ordersServices.postOrdersService(3, productsIds);
+    const result = await ordersServices.postOrdersService({ userId: 3, productsIds });
     return res.status(result.status).json(result.message);
   }
 }
