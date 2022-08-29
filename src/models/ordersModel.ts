@@ -1,7 +1,7 @@
 import connection from './connection';
 import { IOrder } from '../interfaces/ordersInterface';
 
-export  async function getAllOrdersModel(): Promise<IOrder[]> {
+export async function getAllOrdersModel(): Promise<IOrder[]> {
   // source: https://www.tutorialspoint.com/mysql/mysql_aggregate_functions_json_arraygg.htm
   const query = `
     SELECT

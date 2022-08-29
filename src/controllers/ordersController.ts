@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
-import * as ordersServices from '../services/ordersService'
-import { IUserWithID } from '../interfaces/usersInterface';
-import { IOrder } from '../interfaces/ordersInterface';
 import jwt from 'jsonwebtoken';
+import * as ordersServices from '../services/ordersService';
+import { IUserWithID } from '../interfaces/usersInterface';
 
 const secret = 'criandoToken';
 
