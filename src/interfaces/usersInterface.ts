@@ -7,4 +7,5 @@ export interface IUser {
 
 export interface IUserWithID {
   id: number;
+  token?: string;
 }
