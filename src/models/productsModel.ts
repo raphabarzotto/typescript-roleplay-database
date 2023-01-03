@@ -4,7 +4,7 @@ import { IProduct, IProductWithID } from '../interfaces/productsInterface';
 
 export async function create(productToCreate: IProduct): Promise<IProductWithID> {
   const { name, amount } = productToCreate;
-  const query = 'INSERT INTO Trybesmith.Products (name, amount) VALUES (?, ?)';
+  const query = 'INSERT INTO RoleplayDatabase.Products (name, amount) VALUES (?, ?)';
 
   const [result] = await connection.execute<ResultSetHeader>(query, [name, amount]);
   const { insertId } = result;
@@ -13,7 +13,7 @@ export async function create(productToCreate: IProduct): Promise<IProductWithID>
 }
 
 export async function getAll(): Promise<IProductWithID[]> {
-  const query = 'SELECT * FROM Trybesmith.Products';
+  const query = 'SELECT * FROM RoleplayDatabase.Products';
 
   const [result] = await connection.execute(query);
 

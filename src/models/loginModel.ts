@@ -9,7 +9,7 @@ export default async function loginModel(body: ILogin): Promise<ILogin[]> {
       username,
       password
     FROM
-      Trybesmith.Users as users
+      RoleplayDatabase.Users as users
     WHERE
       users.username = ? 
     AND
